@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<WebApplication1.Models.File>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Dosya Listesi</h1>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+
+                        </div>
+                            
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                       
+                             <table id="example2" class="table table-bordered table-hover">
+                                 <thead>
+                                     <tr>
+                                         <th>Id</th>
+                                         <th>Dosya Adı</th>
+                                         <th>Dosya Yolu</th>
+                                         <th>Dosya Boyutu</th>
+                                         <th>Yüklenme Tarihi</th>
+                                         <th>Yükleyen Email</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                    @if (Model != null && Model.Any())
+                                    {
+                                        @foreach(var seeData in Model)
+                                        {
+                                            <tr>
+                                                <td>@seeData.Id</td>
+                                                <td>@seeData.FileName</td>
+                                                <td>@seeData.FilePath</td>
+                                                <td>@seeData.FileSize</td>
+                                                <td>@seeData.UploadedAt</td>
+                                                <td>@seeData.UploadedByUser.Email</td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a asp-controller="" asp-action="Edit" asp-route-id="@seeData.Id" class="btn btn-primary">Düzenle</a> 
+                                                        <a asp-controller="" asp-action="Sil" asp-route-id="@seeData.Id" class="btn btn-danger">Sil</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    } 
+                                </tbody>
+
+                             </table>
+                            @if (Model == null || !Model.Any())
+                            {   <div class="d-flex justify-content-center">
+                                    <div style="padding:1rem;">
+                                        Veri bulunmuyor.
+                                        
+                                    </div>  
+                                </div>
+
+                            }
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

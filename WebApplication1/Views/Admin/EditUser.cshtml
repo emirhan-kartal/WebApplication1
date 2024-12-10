@@ -1,0 +1,54 @@
+﻿@model WebApplication1.ViewModels.UpdateUserViewModel
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kullanıcı Düzenle</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Kullanıcı Bilgileri Güncelleme</h3>
+                </div>
+
+                <form asp-action="EditUser" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="FullName">Ad Soyad</label>
+                            <input asp-for="FullName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" class="form-control" required type="email" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Role">Rol</label>
+                            <select asp-for="Role" class="form-control" required disabled="@Model.isSuperAdmin">
+                                <option value="Admin">Admin</option>
+                                <option value="User">Kullanıcı</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Yüklenen Dosya Sayısı</label>
+                            <input type="text" value="@Model.UploadedFilesCount" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-warning">Güncelle</button>
+                        <a asp-action="UserList" class="btn btn-default">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
